@@ -1,0 +1,446 @@
+[gd_scene load_steps=40 format=3 uid="uid://dals37dmgxrab"]
+
+[ext_resource type="Script" path="res://Scene/CharacterBody2D.gd" id="1_hgc7y"]
+[ext_resource type="Script" path="res://Scene/MovementManager.gd" id="2_m7mpg"]
+[ext_resource type="Texture2D" uid="uid://btyf62screuv" path="res://Sprite/Esther_Draft43-A-Sheet.png" id="2_y7uem"]
+[ext_resource type="Texture2D" uid="uid://ntpiqscv1t63" path="res://Sprite/ver2estherSwordlight1_Modified13.png" id="3_0r7ot"]
+[ext_resource type="Script" path="res://Script/PlayerFiniteStateMachine.gd" id="3_30avi"]
+[ext_resource type="Script" path="res://Scene/Idle.gd" id="4_lehc1"]
+[ext_resource type="Script" path="res://Scene/Ground1.gd" id="4_yk3a2"]
+[ext_resource type="Script" path="res://Scene/HeldItemPlaceholder.gd" id="6_478je"]
+[ext_resource type="PackedScene" uid="uid://vaj74h32t6xf" path="res://Scene/flame_sword.tscn" id="7_2nw2w"]
+[ext_resource type="Script" path="res://Scene/Ground2.gd" id="8_8j5e3"]
+[ext_resource type="Script" path="res://Scene/Ground3.gd" id="9_rmpi5"]
+[ext_resource type="Texture2D" uid="uid://dxkla3q1sr08g" path="res://Sprite/ver2estherSwordlightonly2.png" id="12_urwe4"]
+[ext_resource type="Texture2D" uid="uid://hvo6lb2q035e" path="res://Sprite/estherSwordlight3_Modified3.png" id="13_t0eew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5l2o"]
+size = Vector2(573, 64.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duw4s"]
+
+[sub_resource type="Animation" id="Animation_4r1oy"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_vhieq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_0r7ot")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeldItemMaster/HeldItemPlaceholder:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeldItemMaster/HeldItemPlaceholder:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x0a6n"]
+resource_name = "SwordAttack1"
+length = 0.9935
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_0r7ot")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeldItemMaster/HeldItemPlaceholder:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-7, 6), Vector2(22, -2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeldItemMaster/HeldItemPlaceholder:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, 1.77983]
+}
+
+[sub_resource type="Animation" id="Animation_er3w3"]
+resource_name = "SwordAttack2"
+length = 0.9935
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_urwe4")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeldItemMaster/HeldItemPlaceholder:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(22, -2), Vector2(-7, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeldItemMaster/HeldItemPlaceholder:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.77983, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_00d7r"]
+resource_name = "SwordAttack3"
+length = 1.0175
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 12, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_t0eew")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HeldItemMaster/HeldItemPlaceholder:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-7, 6), Vector2(-6, -13), Vector2(-7, 5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HeldItemMaster/HeldItemPlaceholder:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 1.81606, 0.0258937]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e7kqa"]
+_data = {
+"Idle": SubResource("Animation_4r1oy"),
+"RESET": SubResource("Animation_vhieq"),
+"SwordAttack1": SubResource("Animation_x0a6n"),
+"SwordAttack2": SubResource("Animation_er3w3"),
+"SwordAttack3": SubResource("Animation_00d7r")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugrqr"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8kw7i"]
+animation = &"SwordAttack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1iv5m"]
+animation = &"SwordAttack2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qiewy"]
+animation = &"SwordAttack3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ndos8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ui6k0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dd1cv"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rjlm6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k5xhm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fhicn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_85ltn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_asr33"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_17f32"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ri2s"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b3kq4"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xdexm"]
+states/Idle/node = SubResource("AnimationNodeAnimation_ugrqr")
+states/Idle/position = Vector2(407, 95)
+states/SwordAttack1/node = SubResource("AnimationNodeAnimation_8kw7i")
+states/SwordAttack1/position = Vector2(220, 184)
+states/SwordAttack2/node = SubResource("AnimationNodeAnimation_1iv5m")
+states/SwordAttack2/position = Vector2(455, 184)
+states/SwordAttack3/node = SubResource("AnimationNodeAnimation_qiewy")
+states/SwordAttack3/position = Vector2(655, 184)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ndos8"), "Idle", "SwordAttack1", SubResource("AnimationNodeStateMachineTransition_ui6k0"), "SwordAttack1", "SwordAttack2", SubResource("AnimationNodeStateMachineTransition_dd1cv"), "SwordAttack2", "SwordAttack3", SubResource("AnimationNodeStateMachineTransition_rjlm6"), "SwordAttack3", "SwordAttack2", SubResource("AnimationNodeStateMachineTransition_k5xhm"), "SwordAttack2", "SwordAttack1", SubResource("AnimationNodeStateMachineTransition_fhicn"), "SwordAttack1", "Idle", SubResource("AnimationNodeStateMachineTransition_85ltn"), "Idle", "SwordAttack2", SubResource("AnimationNodeStateMachineTransition_asr33"), "SwordAttack2", "Idle", SubResource("AnimationNodeStateMachineTransition_17f32"), "Idle", "SwordAttack3", SubResource("AnimationNodeStateMachineTransition_8ri2s"), "SwordAttack3", "Idle", SubResource("AnimationNodeStateMachineTransition_b3kq4")]
+graph_offset = Vector2(-31, 60)
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_e12y3"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fqwhd"]
+graph_offset = Vector2(-386, 48)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_xdexm")
+nodes/StateMachine/position = Vector2(-40, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_e12y3")
+nodes/TimeScale/position = Vector2(140, 100)
+node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(188.5, 131.75)
+shape = SubResource("RectangleShape2D_w5l2o")
+debug_color = Color(0.188235, 0.701961, 0, 0.419608)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_hgc7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_duw4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_y7uem")
+hframes = 5
+vframes = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Sprite2D"]
+position = Vector2(17, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_0r7ot")
+
+[node name="MovementManager" type="Node" parent="CharacterBody2D"]
+script = ExtResource("2_m7mpg")
+
+[node name="StateMachine" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("Character", "HeldItemPlaceholder", "PlayerAnimationMaster", "PlayerMovementManager")]
+script = ExtResource("3_30avi")
+Character = NodePath("..")
+HeldItemPlaceholder = NodePath("../HeldItemMaster/HeldItemPlaceholder")
+PlayerAnimationMaster = NodePath("../AnimationTree")
+PlayerMovementManager = NodePath("../MovementManager")
+
+[node name="Idle" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("4_lehc1")
+StateName = 1
+
+[node name="Ground1" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("4_yk3a2")
+StateName = 2
+
+[node name="Ground2" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("8_8j5e3")
+StateName = 3
+
+[node name="Ground3" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("9_rmpi5")
+StateName = 4
+
+[node name="HeldItemMaster" type="Node2D" parent="CharacterBody2D"]
+
+[node name="HeldItemPlaceholder" type="Node2D" parent="CharacterBody2D/HeldItemMaster"]
+position = Vector2(-7, 6)
+scale = Vector2(0.695563, 0.561751)
+script = ExtResource("6_478je")
+
+[node name="FlameSword" parent="CharacterBody2D/HeldItemMaster/HeldItemPlaceholder" instance=ExtResource("7_2nw2w")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_e7kqa")
+}
+speed_scale = 1.706
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_e7kqa")
+}
+tree_root = SubResource("AnimationNodeBlendTree_fqwhd")
+anim_player = NodePath("../AnimationPlayer")
+parameters/TimeScale/scale = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]

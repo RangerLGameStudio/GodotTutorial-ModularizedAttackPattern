@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://vaj74h32t6xf"]
+
+[ext_resource type="Script" path="res://Scene/flame_sword.gd" id="1_8stnj"]
+[ext_resource type="Texture2D" uid="uid://ddlygx2dwy640" path="res://Sprite/long flamsword.png" id="1_axe5e"]
+[ext_resource type="Script" path="res://Script/ItemAttackPatternManager.gd" id="1_r5x6r"]
+[ext_resource type="Script" path="res://Scene/FlameSwordGroundAttack1.gd" id="2_ni2v6"]
+[ext_resource type="Script" path="res://Scene/FSGroundAttack2.gd" id="5_watbk"]
+[ext_resource type="Script" path="res://Scene/FSGroundAttack3.gd" id="6_0nl5q"]
+
+[node name="FlameSword" type="Node2D" node_paths=PackedStringArray("AttackPatternNode")]
+script = ExtResource("1_8stnj")
+AttackPatternNode = NodePath("ItemAttackPatternManager")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_axe5e")
+
+[node name="ItemAttackPatternManager" type="Node" parent="." node_paths=PackedStringArray("GroundAttack1", "GroundAttack2", "GroundAttack3")]
+script = ExtResource("1_r5x6r")
+GroundAttack1 = NodePath("FlameSwordGroundAttack1")
+GroundAttack2 = NodePath("FSGroundAttack2")
+GroundAttack3 = NodePath("FSGroundAttack3")
+
+[node name="FlameSwordGroundAttack1" type="Node" parent="ItemAttackPatternManager"]
+script = ExtResource("2_ni2v6")
+ComboWindow = 0.3
+
+[node name="FSGroundAttack2" type="Node" parent="ItemAttackPatternManager"]
+script = ExtResource("5_watbk")
+ComboWindow = 0.3
+
+[node name="FSGroundAttack3" type="Node" parent="ItemAttackPatternManager"]
+script = ExtResource("6_0nl5q")
+AttackSpeed = 0.2
